@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "dev-server": "nodemon --exec babel-node src/server/server.js --ignore dist/",
+    "dev-bundle": "webpack -w -d"
   },
   "repository": {
     "type": "git",
@@ -30,8 +32,11 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.0.0",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0",
-    "nodemon": "^2.0.3"
+    "jest": "^26.0.0",
+    "nodemon": "^2.0.3",
+    "react-test-renderer": "^16.13.1"
   }
 }
