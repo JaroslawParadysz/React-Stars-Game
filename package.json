@@ -3,12 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "test": "jest",
-    "dev-server": "node src/server/server.js",
-    "dev-bundle": "webpack -w -d",
-    "dev-sass": "node-sass"
+    "dev-server": "nodemon --exec babel-node src/server/server.js --ignore dist/",
+    "dev-bundle": "webpack -w -d"
   },
   "repository": {
     "type": "git",
@@ -39,6 +36,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0",
     "jest": "^26.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "nodemon": "^2.0.3",
     "react-test-renderer": "^16.13.1",

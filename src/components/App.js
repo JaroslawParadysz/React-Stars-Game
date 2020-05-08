@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import style from './styles/app.scss';
+//import style from './styles/app.scss';
+import Hello from './Hello';
+import ExportedComponent from './ExportedComponent';
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -16,9 +18,8 @@ export default function App() {
         <br />
         <button onClick={() => setCount(count + 1)}>{count}</button>
       </div>
-      <div className={style.gamePlayground}>
-        Hello !
-      </div>
+      <Hello/>
+      <ExportedComponent/>
     </React.Fragment>
   );
 }
