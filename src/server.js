@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import App from '../components/App';
+import App from './components/App';
 
 const port = 4243;
 const server = express();
@@ -14,10 +14,11 @@ server.get('/', (req, res) => {
     <html>
       <head>
         <title>Sample React App</title>
+        <link rel="stylesheet" type="text/css" href="./styles.css" />
       </head>
       <body>
         <div id="mountNode">${initialMarkup}</div>
-        <script src="/main.js"></script>
+        <script src="./app.bundle.js"></script>
       </body>
     </html>
   `)
