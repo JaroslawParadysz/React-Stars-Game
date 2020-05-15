@@ -21,26 +21,48 @@ body {
     background: rgba(18, 21, 221, 0.26);
   }
 
-  .playGround {
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      width: 270px;
-      text-align: center;
+.playGround {
+  max-width: 500px;
+  margin: 0 auto;     
+}
 
-      .playgoundPart {
-          display: inline-block;
-          width: 50%;         
-    }
-    .playButton {
-        font-size: 1.1rem;
-        margin: 5px;
-        height: 35px;
-        width: 35px;
-    }
-    .playStar{
-      content: "\2605";
-      margin: 5px;
-      height: 35px;
-      width: 35px;
-    }
-    
-  }
+.body {
+  display: flex;
+}
+
+.playgoundLeftPart {
+  text-align: center;
+  border: thin solid #ddd;
+  width: 50%;
+}
+
+.playgoundRightPart {
+  text-align: center;
+  border: thin solid #ddd;
+  padding: 10px;
+  width: 50%;
+}
+
+.playButton {
+  background-color: #eee;
+  border: thin solid #ddd;
+  width: 45px;
+  height: 45px;
+  margin: 10px;
+  font-size: 25px;
+}
+
+.playButton:focus, .playButton:active {
+  outline: none;
+  border: thin solid #ddd;
+}
+
+.playStar {
+  display: inline-block;
+}
+
+.playStar:after {
+  content: "\2605";
+  font-size: 45px;
+  margin: 0 15px;
+}

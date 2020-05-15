@@ -6,8 +6,10 @@ export default function App() {
   
   return (
     <div className='playGround'>
+      <div className='body'>
         <LeftPlaygound />
         <RightPlaygound />
+      </div>
     </div>
   );
 }
