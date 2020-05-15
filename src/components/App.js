@@ -13,15 +13,26 @@ export default function App() {
   }
 
   function onButtonClick(i) {    
-    let c = state[i - 1];
-    console.log(c);
+    state[i - 1].clicked = true;
+    console.log(state[i - 1]);
+    const newState = [];
+    for (let j = 0; j < state.length; j++) {
+      newState.push(state[j]);
+    }
+    setState(newState);
   }
+
+  function isClicked(i) {
+    return state[i - 1].clicked;
+  }
+
+
   const [state, setState] = useState(createStars());
   return (
     <div className='playGround'>
       <div className='body'>
         <LeftPlaygound onButtonClick={onButtonClick}/>
-        <RightPlaygound />
+        <RightPlaygound isClicked={isClicked}/>
       </div>
     </div>
   );

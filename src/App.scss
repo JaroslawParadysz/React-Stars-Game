@@ -66,3 +66,13 @@ body {
   font-size: 45px;
   margin: 0 15px;
 }
+
+.clickedPlayStar {
+  display: inline-block;
+}
+
+.clickedPlayStar:after {
+  content: "\2605";
+  font-size: 30px;
+  margin: 0 15px;
+}
