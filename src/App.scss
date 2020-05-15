@@ -13,9 +13,34 @@ body {
   }
   
   .wrapper {
+    text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 5px 20px;
     border-radius: 2px;
     margin-top: 20px;
-    background: rgba(177, 221, 18, 0.26);
+    background: rgba(18, 21, 221, 0.26);
+  }
+
+  .playGround {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      width: 270px;
+      text-align: center;
+
+      .playgoundPart {
+          display: inline-block;
+          width: 50%;         
+    }
+    .playButton {
+        font-size: 1.1rem;
+        margin: 5px;
+        height: 35px;
+        width: 35px;
+    }
+    .playStar{
+      content: "\2605";
+      margin: 5px;
+      height: 35px;
+      width: 35px;
+    }
+    
   }

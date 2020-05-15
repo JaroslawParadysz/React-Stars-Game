@@ -7,5 +7,5 @@ const jsx = (
     <App />
 );
 
-const app = document.getElementById( "app" );
+const app = document.getElementById( "mountNode" );
 ReactDOM.hydrate( jsx, app );
