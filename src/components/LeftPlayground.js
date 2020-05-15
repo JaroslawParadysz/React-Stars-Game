@@ -1,8 +1,9 @@
 import React from 'react';
 import Button from './Button';
+import Utils from '../Utils';
 
 export default function() {
-    const buttons = CreateRange();
+    const buttons = Utils.createRange();
     return(
         <div className='playgoundPart'>
           {buttons.map(x => <Button key={x} num={x}/>)}
