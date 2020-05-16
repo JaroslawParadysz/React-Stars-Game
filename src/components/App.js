@@ -3,7 +3,9 @@ import LeftPlaygound from './LeftPlayground';
 import RightPlaygound from './RightPlaygound';
 
 export default function App() {
-  function createStars(){
+  const [state, setState] = useState(createStars());
+
+  function createStars() {
     const stars = [];
     for (let i = 1; i < 10; i++ ) {
       stars.push({id: i, clicked: false});
@@ -26,13 +28,18 @@ export default function App() {
     return state[i - 1].clicked;
   }
 
+  function resetState() {
+    setState(createStars());
+  }
 
-  const [state, setState] = useState(createStars());
   return (
     <div className='playGround'>
       <div className='body'>
         <LeftPlaygound onButtonClick={onButtonClick}/>
         <RightPlaygound isClicked={isClicked}/>
+      </div>
+      <div className='reset'>
+        <button onClick={resetState}>Reset</button>
       </div>
     </div>
   );

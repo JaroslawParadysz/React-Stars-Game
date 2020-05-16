@@ -43,6 +43,22 @@ body {
   width: 50%;
 }
 
+.reset {
+  text-align: center;
+  margin-top: 10px;
+
+  button {
+    border: thin solid #ddd;
+    font-size: 30px;
+  }
+  button:focus, button:active {
+    outline: none;
+    border: thin solid #ddd;
+  }
+}
+
+
+
 .playButton {
   background-color: #eee;
   border: thin solid #ddd;
@@ -65,6 +81,7 @@ body {
   content: "\2605";
   font-size: 45px;
   margin: 0 15px;
+  color: black;
 }
 
 .clickedPlayStar {
@@ -73,6 +90,7 @@ body {
 
 .clickedPlayStar:after {
   content: "\2605";
-  font-size: 30px;
+  font-size: 45px;
   margin: 0 15px;
+  color: red;
 }
