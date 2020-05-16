@@ -7,7 +7,8 @@ export default function App() {
   const [numberOfClicks, setNumberOfClicks] = useState(0);
   useEffect(() => {
     document.title = `You clicked ${numberOfClicks}`;
-  });
+  },
+  [numberOfClicks]);
 
   function createStars() {
     const stars = [];
