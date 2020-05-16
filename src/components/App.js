@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LeftPlaygound from './LeftPlayground';
 import RightPlaygound from './RightPlaygound';
 
 export default function App() {
   const [state, setState] = useState(createStars());
+  const [numberOfClicks, setNumberOfClicks] = useState(0);
+  useEffect(() => {
+    document.title = `You clicked ${numberOfClicks}`;
+  });
 
   function createStars() {
     const stars = [];
@@ -22,6 +26,7 @@ export default function App() {
       newState.push(state[j]);
     }
     setState(newState);
+    setNumberOfClicks(numberOfClicks + 1);
   }
 
   function isClicked(i) {
