@@ -3,12 +3,7 @@ import LeftPlaygound from './LeftPlayground';
 import RightPlaygound from './RightPlaygound';
 
 export default function App() {
-  const [state, setState] = useState(createStars());
-  const [numberOfClicks, setNumberOfClicks] = useState(0);
-  useEffect(() => {
-    document.title = `You clicked ${numberOfClicks}`;
-  },
-  [numberOfClicks]);
+  const [numberOfStars, setNumberOfStars] = useState(createStars());
 
   function createStars() {
     const stars = [];
@@ -20,22 +15,20 @@ export default function App() {
   }
 
   function onButtonClick(i) {    
-    state[i - 1].clicked = true;
-    console.log(state[i - 1]);
+    numberOfStars[i - 1].clicked = true;
     const newState = [];
-    for (let j = 0; j < state.length; j++) {
-      newState.push(state[j]);
+    for (let j = 0; j < numberOfStars.length; j++) {
+      newState.push(numberOfStars[j]);
     }
-    setState(newState);
-    setNumberOfClicks(numberOfClicks + 1);
+    setNumberOfStars(newState);
   }
 
   function isClicked(i) {
-    return state[i - 1].clicked;
+    return numberOfStars[i - 1].clicked;
   }
 
   function resetState() {
-    setState(createStars());
+    setNumberOfStars(createStars());
   }
 
   return (
