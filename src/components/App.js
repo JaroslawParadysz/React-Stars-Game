@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import LeftPlaygound from './LeftPlayground';
 import RightPlaygound from './RightPlaygound';
+import utils from '../Utils';
 
 export default function App() {
-  const [numberOfStars, setNumberOfStars] = useState(createStars());
+  const [starsIds, setStarsIds] = useState(utils.generateRandomRange(1,9));
+  const [stars, setStars] = useState(createStars(starsIds));
 
-  function createStars() {
+  function createStars(ids) {
     const stars = [];
-    for (let i = 1; i < 10; i++ ) {
+    for(let i in ids) {
       stars.push({id: i, clicked: false});
     }
 
@@ -15,27 +17,28 @@ export default function App() {
   }
 
   function onButtonClick(i) {    
-    numberOfStars[i - 1].clicked = true;
+    stars[i - 1].clicked = true;
     const newState = [];
-    for (let j = 0; j < numberOfStars.length; j++) {
-      newState.push(numberOfStars[j]);
+    for (let j = 0; j < stars.length; j++) {
+      newState.push(stars[j]);
     }
-    setNumberOfStars(newState);
+    setStars(newState);
   }
 
   function isClicked(i) {
-    return numberOfStars[i - 1].clicked;
+    return stars[i - 1].clicked;
   }
 
   function resetState() {
-    setNumberOfStars(createStars());
+    setStarsIds(utils.generateRandomRange(1,9));
+    setStars(createStars(starsIds));
   }
 
   return (
     <div className='playGround'>
       <div className='body'>
         <LeftPlaygound onButtonClick={onButtonClick}/>
-        <RightPlaygound isClicked={isClicked}/>
+        <RightPlaygound isClicked={isClicked} starsIds={starsIds}/>
       </div>
       <div className='reset'>
         <button onClick={resetState}>Reset</button>

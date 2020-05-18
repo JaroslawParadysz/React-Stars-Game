@@ -6,6 +6,17 @@ const utils = {
         }
       
         return range;
+    },
+    generateRandomRange: function(min, max) {
+        const range = [];
+        const random = 0.6; //Math.random();
+        const maxRandomNumber = Math.floor(min + ((max - min) * random));
+
+        for (let i = min; i <= maxRandomNumber; i++) {
+            range.push(i);
+        }
+
+        return range;
     }
 }
 
