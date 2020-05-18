@@ -6,6 +6,8 @@ import utils from '../Utils';
 export default function App() {
   const [starsIds, setStarsIds] = useState(utils.generateRandomRange(1,9));
   const [stars, setStars] = useState(createStars(starsIds));
+  const [clickedButtons, setClickedButtons] = useState([]);
+  const [frozenButtons, setFrozenButtons] = useState([]);
 
   function createStars(ids) {
     const stars = [];
@@ -16,20 +18,26 @@ export default function App() {
     return stars;
   }
 
-  function onButtonClick(i) {    
-    stars[i - 1].clicked = true;
-    const newState = [];
-    for (let j = 0; j < stars.length; j++) {
-      newState.push(stars[j]);
+  function onButtonClick(i) { 
+    if (clickedButtons.find(x => x === i) !== undefined) {
+       return;
     }
-    setStars(newState);
+    let newClickedButtons = new [...clickedButtons];
+    newClickedButtons.push(i);
+    setClickedButtons(newClickedButtons);
+
+    if (clickedButtons.reduce((a,b) => a+b, 0) !== stars.length) {
+      return;
+    }
+    setFrozenButtons([...clickedButtons]);
+    resetStars();
   }
 
   function isClicked(i) {
     return stars[i - 1].clicked;
   }
 
-  function resetState() {
+  function resetStars() {
     setStarsIds(utils.generateRandomRange(1,9));
     setStars(createStars(starsIds));
   }
@@ -41,7 +49,7 @@ export default function App() {
         <RightPlaygound isClicked={isClicked} starsIds={starsIds}/>
       </div>
       <div className='reset'>
-        <button onClick={resetState}>Reset</button>
+        <button onClick={resetStars}>Reset</button>
       </div>
     </div>
   );
