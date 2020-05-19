@@ -5,7 +5,7 @@ import Utils from '../Utils';
 export default function(props) {
     return (
         <div className='playgoundRightPart'>
-            {props.starsIds.map(x => <Star key={x} num={x} isClicked={props.isClicked} />)}
+            {props.starsIds.map(x => <Star key={x} num={x} />)}
         </div>
     );
 };

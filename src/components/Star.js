@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function(props){
     return (
-        <div className={ !props.isClicked(props.num) ? 'playStar' : 'clickedPlayStar'} />
+        <div className = 'playStar'/>
     );
 }

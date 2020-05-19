@@ -9,7 +9,7 @@ const utils = {
     },
     generateRandomRange: function(min, max) {
         const range = [];
-        const random = 0.6; //Math.random();
+        const random = Math.random();
         const maxRandomNumber = Math.floor(min + ((max - min) * random));
 
         for (let i = min; i <= maxRandomNumber; i++) {

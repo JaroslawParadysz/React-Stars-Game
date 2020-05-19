@@ -6,8 +6,14 @@ import utils from '../Utils';
 export default function App() {
   const [starsIds, setStarsIds] = useState(utils.generateRandomRange(1,9));
   const [stars, setStars] = useState(createStars(starsIds));
+
   const [clickedButtons, setClickedButtons] = useState([]);
   const [frozenButtons, setFrozenButtons] = useState([]);
+  const [wrongButtons, setWrongButtons] = useState([]);
+
+  useEffect(() => {
+    checkClickedButtons();
+  }, [clickedButtons, frozenButtons, wrongButtons]);
 
   function createStars(ids) {
     const stars = [];
@@ -18,27 +24,39 @@ export default function App() {
     return stars;
   }
 
-  function onButtonClick(i) { 
-    if (clickedButtons.find(x => x === i) !== undefined) {
-       return;
-    }
-    let newClickedButtons = new [...clickedButtons];
-    newClickedButtons.push(i);
-    setClickedButtons(newClickedButtons);
+  function checkClickedButtons() {
+    console.log(`Clicked buttons: ${clickedButtons}`);
+    console.log(`Wrong buttons: ${wrongButtons}`);
+    console.log(`Frozen buttons: ${frozenButtons}`);
 
-    if (clickedButtons.reduce((a,b) => a+b, 0) !== stars.length) {
-      return;
+    const sumOfClickedButtons = clickedButtons.reduce((a,b) => a + b, 0);
+    console.log(`sumOfClickedButtons: ${sumOfClickedButtons}`);
+    console.log(`stars.length: ${stars.length}`);
+    if (sumOfClickedButtons === stars.length) {
+      setFrozenButtons([...frozenButtons,...clickedButtons]);
+      setClickedButtons([]);
+      resetStars();
     }
-    setFrozenButtons([...clickedButtons]);
-    resetStars();
+    else if (sumOfClickedButtons > stars.length) {
+      const wrongButton = clickedButtons[clickedButtons.length - 1];
+      const newClickedButtons = clickedButtons.filter(x => x !== wrongButton);
+
+      setWrongButtons([...wrongButtons, wrongButton]);
+      setClickedButtons(newClickedButtons);
+    }
   }
 
-  function isClicked(i) {
-    return stars[i - 1].clicked;
+  function onButtonClick(i) { 
+    if (clickedButtons.find(x => x === i) !== undefined) {
+      return;
+    }
+    const newClickedButtons = [...clickedButtons, i];
+    setClickedButtons(newClickedButtons);
   }
 
   function resetStars() {
     setStarsIds(utils.generateRandomRange(1,9));
+    console.log(starsIds);
     setStars(createStars(starsIds));
   }
 
@@ -46,7 +64,7 @@ export default function App() {
     <div className='playGround'>
       <div className='body'>
         <LeftPlaygound onButtonClick={onButtonClick}/>
-        <RightPlaygound isClicked={isClicked} starsIds={starsIds}/>
+        <RightPlaygound starsIds={starsIds}/>
       </div>
       <div className='reset'>
         <button onClick={resetStars}>Reset</button>
