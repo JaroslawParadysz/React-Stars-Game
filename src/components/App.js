@@ -18,8 +18,6 @@ export default function App() {
   function checkClickedButtons() {
 
     const sumOfClickedButtons = clickedButtons.reduce((a,b) => a + b, 0);
-    //console.log(`sumOfClickedButtons: ${sumOfClickedButtons}`);
-    //console.log(`Stars: ${starsIds}`);
     
     if (sumOfClickedButtons === starsIds.length) {
       setFrozenButtons([...frozenButtons,...clickedButtons]);
@@ -60,6 +58,13 @@ export default function App() {
     return '#eee';
   }
 
+  function onResetClick() {
+    resetStars();
+    setClickedButtons([]);
+    setFrozenButtons([]);
+    setWrongButtons([]);
+  }
+
   return (
     <div className='playGround'>
       <div className='body'>
@@ -67,7 +72,7 @@ export default function App() {
         <RightPlaygound starsIds={starsIds}/>
       </div>
       <div className='reset'>
-        <button onClick={resetStars}>Reset</button>
+        <button onClick={onResetClick}>Reset</button>
       </div>
     </div>
   );
