@@ -57,10 +57,7 @@ body {
   }
 }
 
-
-
 .playButton {
-  background-color: #eee;
   border: thin solid #ddd;
   width: 45px;
   height: 45px;
@@ -86,11 +83,4 @@ body {
 
 .clickedPlayStar {
   display: inline-block;
-}
-
-.clickedPlayStar:after {
-  content: "\2605";
-  font-size: 45px;
-  margin: 0 15px;
-  color: red;
 }

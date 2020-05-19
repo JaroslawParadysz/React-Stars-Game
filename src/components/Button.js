@@ -6,7 +6,9 @@ export default function Button(props) {
         props.onButtonClick(props.num);
     }
     return (
-        <button className='playButton' onClick={onClickHandler}>
+        <button className='playButton' 
+            onClick={onClickHandler} 
+            style={{backgroundColor: props.getButtonColor(props.num)}}>
             {props.num}
         </button>
     );
