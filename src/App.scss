@@ -49,14 +49,19 @@ body {
   text-align: center;
   padding: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.playGroundRoundCompleted::before {
-  content: 'Game completed';
+.gameCompleted {
   font-size: 30px;
   color: green;
+}
+
+.gameCompletedInfo {
+  font-size: 20px;
+  color: gray;
 }
 
 .reset {

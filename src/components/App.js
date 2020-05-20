@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LeftPlaygound from './LeftPlayground';
 import RightPlaygound from './RightPlaygound';
-import { RoundCompleted } from './RoundCompleted';
+import { GameCompleted } from './GameCompleted';
 import utils from '../Utils';
 
 export default function App() {
@@ -84,7 +84,7 @@ export default function App() {
     <div className='playGround'>
       <div className='body'>
         <LeftPlaygound onButtonClick={onButtonClick} getButtonColor={getButtonColor}/>
-        {roundCompleted ? <RoundCompleted /> : <RightPlaygound starsIds={starsIds}/>}
+        {roundCompleted ? <GameCompleted points={frozenButtons.length} mistakes={wrongButtons.length} /> : <RightPlaygound starsIds={starsIds}/>}
       </div>
       <div className='reset'>
         <button onClick={onResetClick}>Reset</button>
