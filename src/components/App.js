@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LeftPlaygound from './LeftPlayground';
 import RightPlaygound from './RightPlaygound';
-import RoundCompleted from './RoundCompleted';
+import { RoundCompleted } from './RoundCompleted';
 import utils from '../Utils';
 
 export default function App() {
@@ -32,7 +32,6 @@ export default function App() {
     if (sumOfClickedButtons === starsIds.length) {
       setFrozenButtons([...frozenButtons,...clickedButtons]);
       setClickedButtons([]);
-      console.log(`${sumOfClickedButtons} === ${starsIds.length}`);
     }
     else if (sumOfClickedButtons > starsIds.length) {
       const wrongButton = clickedButtons[clickedButtons.length - 1];
@@ -47,7 +46,6 @@ export default function App() {
       || wrongButtons.find(x => x === i) !== undefined) {
       return;
     }
-    console.log('Button clicked!');
     setClickedButtons([...clickedButtons, i]);
   }
 

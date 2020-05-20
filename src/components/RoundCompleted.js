@@ -6,4 +6,4 @@ function RoundCompleted() {
     );
 }
 
-export default RoundCompleted;
+export { RoundCompleted };
