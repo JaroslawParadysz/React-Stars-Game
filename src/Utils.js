@@ -1,7 +1,7 @@
 const utils = {
-    createRange: function() {
+    createRange: function(min, max) {
         const range = [];
-        for(let i = 1; i < 10; i++) {
+        for(let i = min; i <= max; i++) {
             range.push(i);
         }
       

@@ -43,6 +43,22 @@ body {
   width: 50%;
 }
 
+.playGroundRoundCompleted {
+  width: 50%;
+  border: thin solid #ddd;
+  text-align: center;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playGroundRoundCompleted::after {
+  content: 'Game completed';
+  font-size: 30px;
+  color: red;
+}
+
 .reset {
   text-align: center;
   margin-top: 10px;
