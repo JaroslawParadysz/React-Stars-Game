@@ -53,10 +53,10 @@ body {
   align-items: center;
 }
 
-.playGroundRoundCompleted::after {
+.playGroundRoundCompleted::before {
   content: 'Game completed';
   font-size: 30px;
-  color: red;
+  color: green;
 }
 
 .reset {

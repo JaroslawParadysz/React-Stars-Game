@@ -40,45 +40,22 @@ export default function App() {
     }
   }
 
-  function onButtonClick(i) { 
-    if (clickedButtons.find(x => x === i) !== undefined
-      || frozenButtons.find(x => x === i) !== undefined
-      || wrongButtons.find(x => x === i) !== undefined) {
+  function onButtonClick(i) {
+    const numbersToCheck = [...clickedButtons, ...frozenButtons, ...wrongButtons];
+    if (numbersToCheck.find(x => x === i) !== undefined) {
       return;
     }
     setClickedButtons([...clickedButtons, i]);
   }
 
-  function getStarsCount() {
-    let newIds = utils.createRange(1, 9);
-    newIds = newIds.filter(x => 
-      clickedButtons.find(i => i === x) === undefined
-      && wrongButtons.find(i => i === x) === undefined
-      && frozenButtons.find(i => i === x) === undefined
-    );
-    let proposition = [...newIds];
-
-    if (proposition.length === 0) {
+  function resetStars() {
+    const numbersToSkip = [...clickedButtons, ...frozenButtons, ...wrongButtons];
+    const newStarsCount = utils.getStarsCount(numbersToSkip);
+    if (newStarsCount === 0) {
       setRoundCompleted(true);
       return;
     }
 
-    for (let i of newIds) {
-      let c = newIds.filter(x => x !== i);
-      for (let j of c) {
-        if (i + j <= 9) {
-          proposition.push(i + j);
-        }
-      }
-    }
-
-    proposition = [...new Set(proposition)]; 
-    let index = Math.floor((proposition.length-1) * Math.random());
-    return proposition[index];
-  }
-
-  function resetStars() {
-    const numbersToSkip = [...clickedButtons, ...frozenButtons, ...wrongButtons];
     setStarsIds(utils.createRange(1, utils.getStarsCount(numbersToSkip)));
   }
 
