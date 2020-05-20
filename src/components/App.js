@@ -78,7 +78,8 @@ export default function App() {
   }
 
   function resetStars() {
-    setStarsIds(utils.createRange(1, getStarsCount()));
+    const numbersToSkip = [...clickedButtons, ...frozenButtons, ...wrongButtons];
+    setStarsIds(utils.createRange(1, utils.getStarsCount(numbersToSkip)));
   }
 
   function getButtonColor(i) {
