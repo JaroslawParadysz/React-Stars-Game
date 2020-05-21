@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LeftPlaygound from './LeftPlayground';
 import RightPlaygound from './RightPlaygound';
 import { GameCompleted } from './GameCompleted';
+import GameOver from './GameOver';
 import utils from '../Utils';
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
   const [wrongButtons, setWrongButtons] = useState([]);
   const [starsIds, setStarsIds] = useState([]);
   const [roundCompleted, setRoundCompleted] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(
     checkClickedButtons,
@@ -19,6 +21,11 @@ export default function App() {
   useEffect(
     resetStars,
     [frozenButtons]
+  );
+
+  useEffect(
+    checkGameOver,
+    [wrongButtons]
   );
 
   function checkClickedButtons() {
@@ -73,8 +80,19 @@ export default function App() {
     return '#eee';
   }
 
+  function checkGameOver() {
+    const availableStars = utils.createRange(1,9).filter(
+      x => wrongButtons.find(i => i === x) === undefined
+      && frozenButtons.find(i => i === x) === undefined);
+    const sumOfAvailableStars = availableStars.reduce((a,b) => a+b,0);
+    if (sumOfAvailableStars < starsIds.length) {
+      setGameOver(true);
+    }      
+  }
+
   function onResetClick() {
     setRoundCompleted(false);
+    setGameOver(false);
     setClickedButtons([]);
     setFrozenButtons([]);
     setWrongButtons([]);
@@ -84,10 +102,12 @@ export default function App() {
     <div className='playGround'>
       <div className='body'>
         <LeftPlaygound onButtonClick={onButtonClick} getButtonColor={getButtonColor}/>
-        {roundCompleted ? <GameCompleted points={frozenButtons.length} mistakes={wrongButtons.length} /> : <RightPlaygound starsIds={starsIds}/>}
+        {gameOver ? <GameOver /> : roundCompleted ? <GameCompleted points={frozenButtons.length} mistakes={wrongButtons.length} /> : <RightPlaygound starsIds={starsIds}/>}
       </div>
-      <div className='reset'>
-        <button onClick={onResetClick}>Reset</button>
+      <div className="footer">
+        <div className='reset'>
+          <button onClick={onResetClick}>Reset</button>
+        </div>
       </div>
     </div>
   );
