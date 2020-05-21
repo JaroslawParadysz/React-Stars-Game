@@ -12,6 +12,7 @@ export default function App() {
   const [starsIds, setStarsIds] = useState([]);
   const [roundCompleted, setRoundCompleted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+  const [time, setTime] = useState(0);
 
   useEffect(
     checkClickedButtons,
@@ -26,6 +27,17 @@ export default function App() {
   useEffect(
     checkGameOver,
     [wrongButtons]
+  );
+
+  useEffect(
+    function() {
+      const timer = setTimeout(
+        () => {setTime(time + 1)},
+        1000
+      )
+      return () => { clearTimeout(timer); }
+    }
+
   );
 
   function checkClickedButtons() {
@@ -105,8 +117,17 @@ export default function App() {
         {gameOver ? <GameOver /> : roundCompleted ? <GameCompleted points={frozenButtons.length} mistakes={wrongButtons.length} /> : <RightPlaygound starsIds={starsIds}/>}
       </div>
       <div className="footer">
-        <div className='reset'>
-          <button onClick={onResetClick}>Reset</button>
+        <div className="footer-column">
+        </div>
+        <div className="footer-column">
+          <div className='reset'>
+            <button onClick={onResetClick}>Reset</button>
+          </div>
+        </div>
+        <div className="footer-column"style={{textAlign: "right"}}>
+          <div className="time">
+            time: {time}
+          </div>
         </div>
       </div>
     </div>
