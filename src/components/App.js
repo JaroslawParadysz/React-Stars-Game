@@ -12,7 +12,7 @@ export default function App() {
   const [starsIds, setStarsIds] = useState([]);
   const [roundCompleted, setRoundCompleted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(10);
 
   useEffect(
     checkClickedButtons,
@@ -31,13 +31,22 @@ export default function App() {
 
   useEffect(
     function() {
+      if (time === 0 && gameOver === false) {
+        setGameOver(true);
+        return;
+      }
+
+      if (time === 0
+        || roundCompleted) {
+        return;
+      }
+
       const timer = setTimeout(
-        () => {setTime(time + 1)},
+        () => {setTime(time - 1)},
         1000
       )
       return () => { clearTimeout(timer); }
     }
-
   );
 
   function checkClickedButtons() {
@@ -108,6 +117,7 @@ export default function App() {
     setClickedButtons([]);
     setFrozenButtons([]);
     setWrongButtons([]);
+    setTime(10);
   }
 
   return (
@@ -126,7 +136,7 @@ export default function App() {
         </div>
         <div className="footer-column"style={{textAlign: "right"}}>
           <div className="time">
-            time: {time}
+            Time: {time}
           </div>
         </div>
       </div>
